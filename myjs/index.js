@@ -1,0 +1,49 @@
+﻿var num=0
+var pages=$(".pages").length
+$(".pages").eq(0).siblings("div").children("div").addClass("hide")
+$(".box").swipeUp(function(){
+    if(num<pages-1){
+        $(".pages").eq(num).addClass("up").next().removeClass("down")
+        $(".pages").eq(num).children().addClass("hide").removeClass("left")
+        $(".pages").eq(num).children(".wrap").eq(1).addClass("right").hide()
+        num++
+        setTimeout(function(){
+            $(".pages").eq(num).children(".wrap").eq(0).removeClass("hide")
+            $(".pages").eq(num).children(".wrap").eq(0).show()
+        },1000)
+    }
+    console.log(num)
+    if(num>=pages-1){num=pages-1}
+})
+$(".box").swipeDown(function(){
+    if(num> 0){
+        $(".pages").eq(num).addClass("down").prev().removeClass("up")
+        $(".pages").eq(num).children().addClass("hide").removeClass("left")
+        $(".pages").eq(num).children(".wrap").eq(1).addClass("right").hide()
+        num--
+        setTimeout(function(){
+            $(".pages").eq(num).children(".wrap").eq(0).removeClass("hide")
+            $(".pages").eq(num).children(".wrap").eq(0).show()
+        },1000)
+    }
+})
+$(".box").swipeLeft(function(){
+    if(num>0&&num<pages-1){
+        $(".pages").eq(num).children(".wrap").eq(0).addClass("left")
+
+        setTimeout(function(){
+            $(".pages").eq(num).children(".wrap").eq(0).hide()
+            $(".pages").eq(num).children(".wrap").eq(1).show().removeClass("right")
+        },500)
+    }
+})
+$(".box").swipeRight(function(){
+    if(num>0&&num<pages-1){
+        $(".pages").eq(num).children(".wrap").eq(0).removeClass("left")
+        $(".pages").eq(num).children(".wrap").eq(1).addClass("right")
+        setTimeout(function(){
+            $(".pages").eq(num).children(".wrap").eq(0).show()
+            $(".pages").eq(num).children(".wrap").eq(1).hide()
+        },500)
+            }
+})
